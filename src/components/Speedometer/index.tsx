@@ -1,12 +1,29 @@
+import { twMerge } from "tailwind-merge";
+
 interface SpeedometerProps {
   mph: string;
 }
 
 export const Speedometer = ({ mph }: SpeedometerProps) => {
+  const SplittedMPH = mph.split("");
+
   return (
-    <div className="font-robotoMono text-2xl text-white  leading-none font-bold  items-center drop-shadow-2xl flex gap-2  ">
-      {mph}{" "}
-      <span className=" font-robotoMono text-2xl flex  text-white">MPH</span>
+    <div className="font-oswald italic text-3xl items-end  flex-col text-gray-300/40 customShadow  leading-none font-bold   drop-shadow-2xl flex   ">
+      MPH
+      <div className="flex">
+        {SplittedMPH.map((item, index) => {
+          return (
+            <span
+              key={index}
+              className={twMerge(
+                " font-oswald text-8xl italic flex text-gray-300/40  customShadow "
+              )}
+            >
+              {item}
+            </span>
+          );
+        })}
+      </div>
     </div>
   );
 };

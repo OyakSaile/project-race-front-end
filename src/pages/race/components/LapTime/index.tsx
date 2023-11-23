@@ -8,8 +8,8 @@ interface IRankingOpenedProps {
   };
 
   time: {
-    bestTime: string;
-    dnf: string;
+    bestTime?: string | null;
+    dnf?: string | null;
     current: string;
   };
 }
@@ -22,43 +22,32 @@ export const LapTime = ({
   return (
     <div className="flex gap-8 ">
       <div>
-        <span className="font-inter text-2xl  text-white  drop-shadow-2xl ">
+        <span className="font-inter md:text-sm 2xl:text-2xl  customShadow  text-white   ">
           CURRENT LAP
         </span>
-        <h1 className="font-robotoMono text-3xl font-bold text-white drop-shadow-2xl">
+        <h1 className="font-robotoMono md:text-sm 2xl:text-2xl font-bold text-white customShadow">
           {time.current}
         </h1>
         <div className="mt-4">
-          <p className="font-robotoMono text-xl text-white drop-shadow-2xl flex justify-between">
-            BEST <span className="font-robotoMono">{time.bestTime}</span>
-          </p>
+          {time?.bestTime && (
+            <p className="font-robotoMono md:text-sm 2xl:text-2xl text-white customShadow flex justify-between gap-2">
+              BEST <span className="font-robotoMono">{time.bestTime}</span>
+            </p>
+          )}
 
-          <p className="font-robotoMono text-xl  items-center text-white drop-shadow-2xl  flex justify-between">
-            DNF <span className="font-robotoMono"> 00:00:00</span>
-          </p>
-          {/* 
-          <div className="mt-4">
-            <p className="font-inter text-[12px]  flex-col  text-white drop-shadow-2xl  flex ">
-              <div className="flex items-center gap-2">
-                FILHODAPUTA_P1 <ArrowUp />
-              </div>
-              <span>7.5</span>
+          {time?.dnf && (
+            <p className="font-robotoMono md:text-sm 2xl:text-2xl  items-center text-white customShadow  flex justify-between">
+              DNF <span className="font-robotoMono"> {time?.dnf}</span>
             </p>
-            <p className="font-inter text-[12px] text-white drop-shadow-2xl flex-col    flex ">
-              <div className="flex items-center gap-2">
-                FILHODAPUTA_P1 <ArrowDown />
-              </div>
-              <span>7.5</span>
-            </p>
-          </div> */}
+          )}
         </div>
       </div>
 
       <div className={`${rankingOpened ? "hidden" : "visible"}`}>
-        <span className="font-inter text-2xl  text-white drop-shadow-2xl">
+        <span className="font-inter md:text-sm 2xl:text-2xl  text-white customShadow">
           PLACE
         </span>
-        <h1 className="font-robotoMono text-3xl font-bold text-white drop-shadow-2xl">
+        <h1 className="font-robotoMono md:text-sm 2xl:text-2xl font-bold text-white customShadow">
           {position.currentPosition}/{position.totalRacersPosition}
         </h1>
       </div>

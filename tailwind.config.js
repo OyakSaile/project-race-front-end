@@ -10,6 +10,7 @@ module.exports = {
     fontFamily: {
       inter: ["Inter", "sans-serif"],
       robotoMono: ["Roboto Mono", "monospace"],
+      oswald: ["Oswald", "monospace"],
     },
   },
   plugins: [],

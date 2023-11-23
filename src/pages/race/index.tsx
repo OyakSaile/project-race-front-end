@@ -5,6 +5,7 @@ import { Position } from "./components/Position";
 import { PositionRanking } from "./components/PositionRaking";
 import { Roles } from "./components/PositionRaking/RacerInfo";
 import { useNuiEvent } from "../../hooks/useNuiEvent";
+import { debugData } from "../../utils/debugData";
 
 interface RaceTable {
   name: string;
@@ -34,12 +35,59 @@ interface Race_Time {
   best_lap: string;
 }
 
+// debugData([
+//   {
+//     action: "race_ranking",
+//     data: [
+//       {
+//         name: "kkkkkkkkkkKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+//         bestLap: "--:--:--",
+//         position: "1",
+//         role: "vip",
+//         gap: "+00:00.000",
+//       },
+//     ],
+//   },
+// ]);
+
+// debugData([
+//   {
+//     action: "race_data",
+//     data: {
+//       is_sprint_race: false,
+//       race_finished: false,
+//       pos: "1",
+//       players: "50",
+//       checkpoint: "3",
+//       total_checkpoint: "38",
+//       current_lap: "3",
+//       laps: "8",
+//     },
+//   },
+// ]);
+
+// debugData([
+//   {
+//     action: "race_time",
+//     data: {
+//       lap_time: "--:--:--",
+//       total_time: "1-:--:--",
+//       dnf_time: "1-:--:--",
+//       current: "1-:--:--",
+//       best_time: "1:--:--",
+//       best_lap: "--:--:--",
+//     },
+//   },
+// ]);
+
 export const Race = () => {
   const [rankingOpened, setRankingOpened] = useState<boolean>(true);
   const [race, setRace] = useState({} as Race_Data);
   const [raceTime, setRaceTime] = useState({} as Race_Time);
 
-  const hasDnf = raceTime.dnf_time !== "--:--:--";
+  const hasDnf = raceTime.dnf_time !== "--:--:--" ? raceTime.dnf_time : "";
+  const hasBestTime = raceTime.best_lap !== "--:--:--" ? raceTime.best_lap : "";
+
   const isRaceFinished = race.race_finished;
 
   const [raceTable, setRaceRanking] = useState<RaceTable[]>([]);
@@ -92,18 +140,28 @@ export const Race = () => {
             }}
             raceTable={raceTable}
           />
-          <div className="flex gap-2 items-center">
-            <h1 className="text-white border max-w-max px-4 py-1 font-inter font-bold border-w-max text-xs ">
-              TAB
-            </h1>
-            <p className="text-white font-inter text-xs font-light">Stats</p>
+          <div className="flex gap-4">
+            <div className="flex gap-2 items-center">
+              <h1 className="text-white  border max-w-max px-1 py-1 font-inter font-bold border-w-max text-xs ">
+                TAB
+              </h1>
+              <p className="text-white font-inter text-xs font-light">
+                HIDE RANKING{" "}
+              </p>
+            </div>
+            <div className="flex gap-2 items-center">
+              <h1 className="text-white  border max-w-max px-1 py-1 font-inter font-bold border-w-max text-xs ">
+                F5
+              </h1>
+              <p className="text-white font-inter text-xs font-light">RETURN</p>
+            </div>
           </div>
         </div>
         <LapTime
           time={{
             current: raceTime.lap_time,
-            bestTime: raceTime.best_lap,
-            dnf: hasDnf ? raceTime.dnf_time : "--:--:--",
+            bestTime: hasBestTime,
+            dnf: hasDnf,
           }}
           position={{
             currentPosition: race.pos,
@@ -119,6 +177,7 @@ export const Race = () => {
             current: race.checkpoint,
             total: race.total_checkpoint,
           }}
+          isSprintRace={race.is_sprint_race}
           lapInfo={{
             current: race.current_lap,
             total: race.laps,

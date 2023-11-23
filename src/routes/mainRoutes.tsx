@@ -28,7 +28,7 @@ export const MainRoutes = () => {
             <Hud />
             <RoutesPublic />
 
-            <div className="absolute font-bold text-3xl text-white bottom-8 right-4 ">
+            <div className="absolute font-bold text-3xl text-white  bottom-8 right-10 ">
               {isSpeedOmeterVisible && <Speedometer mph={mph} />}
             </div>
           </div>

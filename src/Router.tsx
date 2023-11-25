@@ -7,6 +7,10 @@ import { Race } from "./pages/race";
 import { RaceCountDown } from "./pages/race/countdown";
 import { Settings } from "./pages/settings";
 import { RaceCreate } from "./pages/race/create";
+import { ChooseName } from "./pages/choose-name";
+import { Lobby } from "./pages/lobby";
+import { SelectRacePage } from "./pages/lobby/pages/select-race";
+import { SelectRace } from "./pages/lobby/pages/select-race/SelectRace";
 
 export const RoutesPublic = () => {
   const navigate = useNavigate();
@@ -47,6 +51,19 @@ export const RoutesPublic = () => {
     {
       path: "/settings",
       component: <Settings />,
+    },
+
+    {
+      path: "/lobby",
+      component: <Lobby />,
+    },
+    {
+      path: "/choose-name",
+      component: <ChooseName />,
+    },
+    {
+      path: "lobby/select-race",
+      component: <SelectRace />,
     },
   ];
 

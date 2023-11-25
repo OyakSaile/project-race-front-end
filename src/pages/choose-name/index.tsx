@@ -2,41 +2,29 @@ import React, { useState } from "react";
 
 import { InputText } from "../../components/Form/InputText";
 import { cleanAllSpecialCharacters } from "../../helpers/cleanAllSpecialCharacters";
+import { nuiApi } from "../../services/nuiApi";
 
 export const ChooseName: React.FC = () => {
   const [drivertag, setDriverTag] = useState("");
   const [hasDriverTagError, setHasDriverTagError] = useState("");
 
-  const handleCreateCharacter = async () => {
-    // try {
-    //   const res = await fetch(`${backendUrlPrefix}/users/character-name`, {
-    //     method: 'PATCH',
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ drivertag }),
-    //   }).then((response) => response.json());
-    //   if (res.statusCode === 401) {
-    //     setHasDriverTagError('Driver Tag Already in use');
-    //   } else {
-    //     triggerEvent({
-    //       event: 'DRIVER_TAGGED',
-    //       data: {},
-    //     });
-    //   }
-    // } catch (err) {
-    //   setHasDriverTagError('Driver Tag Already in use');
-    // }
+  const handleChooseDrivatagName = async () => {
+    const { data } = await nuiApi.post("select_name", {
+      drivertag,
+    });
+
+    if (data.message === "already_user_used") {
+      setHasDriverTagError("Driver Tag Already in use");
+    }
   };
 
   const handleChangeInput = ({ target }: any) => {
-    // const cleanDriverTag = cleanAllSpecialCharacters(target.value);
-    // if (cleanDriverTag.length >= 20) {
-    //   return;
-    // }
-    // setHasDriverTagError('');
-    // setDriverTag(cleanDriverTag);
+    const cleanDriverTag = cleanAllSpecialCharacters(target.value);
+    if (cleanDriverTag.length >= 20) {
+      return;
+    }
+    setHasDriverTagError("");
+    setDriverTag(cleanDriverTag);
   };
 
   return (
@@ -66,7 +54,7 @@ export const ChooseName: React.FC = () => {
           </div>
 
           <button
-            onClick={handleCreateCharacter}
+            onClick={handleChooseDrivatagName}
             type="button"
             disabled={cleanAllSpecialCharacters(drivertag).length < 3}
             className="bg-blue-950 mt-12 font-inter disabled:bg-gray-800 disabled:cursor-not-allowed disabled:text-gray-300 hover:bg-blue-600  transition-all text-white  font-bold w-full py-4"

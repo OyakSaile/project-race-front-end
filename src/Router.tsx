@@ -12,6 +12,7 @@ import { Lobby } from "./pages/lobby";
 import { SelectRacePage } from "./pages/lobby/pages/select-race";
 import { SelectRace } from "./pages/lobby/pages/select-race/SelectRace";
 import { RaceLeaderboard } from "./pages/race/leadearboard";
+import { Vstance } from "./pages/tunning/vstance";
 
 export const RoutesPublic = () => {
   const navigate = useNavigate();
@@ -44,6 +45,10 @@ export const RoutesPublic = () => {
     {
       path: "/race/countdown",
       component: <RaceCountDown />,
+    },
+    {
+      path: "/tunning/vtance",
+      component: <Vstance />,
     },
     {
       path: "/race/create",

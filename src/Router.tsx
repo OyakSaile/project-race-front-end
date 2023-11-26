@@ -11,6 +11,7 @@ import { ChooseName } from "./pages/choose-name";
 import { Lobby } from "./pages/lobby";
 import { SelectRacePage } from "./pages/lobby/pages/select-race";
 import { SelectRace } from "./pages/lobby/pages/select-race/SelectRace";
+import { RaceLeaderboard } from "./pages/race/leadearboard";
 
 export const RoutesPublic = () => {
   const navigate = useNavigate();
@@ -49,17 +50,24 @@ export const RoutesPublic = () => {
       component: <RaceCreate />,
     },
     {
+      path: "race/leadearboard",
+      component: <RaceLeaderboard />,
+    },
+    {
       path: "/settings",
       component: <Settings />,
     },
-
+    {
+      path: "/choose-name",
+      component: <ChooseName />,
+    },
     {
       path: "/lobby",
       component: <Lobby />,
     },
     {
-      path: "/choose-name",
-      component: <ChooseName />,
+      path: "lobby/select-race",
+      component: <SelectRace />,
     },
     {
       path: "lobby/select-race",

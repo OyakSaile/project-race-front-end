@@ -1,20 +1,15 @@
+import { RainbowCloud, Trophy } from "@phosphor-icons/react";
 import React from "react";
 
 export const Lobby: React.FC = () => {
   return (
     <div className="w-full h-screen relative">
-      {/* <div className="absolute bottom-1/2 transform translate-y-1/2   left-12 flex gap-8 flex-col  ">
+      <div className="absolute bottom-1/2 transform translate-y-1/2   left-12 flex gap-8 flex-col  ">
         <div>
           <div className="bg-black/50 p-2">
             <h1 className="text-gray-300 text-xs font-inter font-bold"></h1>
           </div>
-          <div
-            className="bg-black/50 h-[200px]  relative p-4"
-            style={{
-              backgroundImage: `url(/img/bg.png)`,
-              backgroundPosition: "center top",
-            }}
-          >
+          <div className="bg-black/50 h-[200px]  relative p-4">
             <div className="bg-black/80 w-[100px] h-[100px] p-4 absolute bottom-8 flex justify-center items-center flex-col left-4">
               <h2 className="text-gray-300 font-bold">
                 <Trophy className="font-blue-950" size={32} weight="fill" />
@@ -67,7 +62,7 @@ export const Lobby: React.FC = () => {
         >
           JOIN RACE
         </button>
-      </div> */}
+      </div>
     </div>
   );
 };

@@ -83,10 +83,7 @@ export const RoutesPublic = () => {
       path: "lobby/select-race",
       component: <SelectRace />,
     },
-    {
-      path: "lobby/select-race",
-      component: <SelectRace />,
-    },
+
   ];
 
   return (

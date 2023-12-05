@@ -1,21 +1,30 @@
-import React, { useEffect, useState } from "react";
-import MockImage from "@/assets/mock-car.jpg";
-import { InputText } from "../../../components/Form/InputText";
-import { cleanAllSpecialCharacters } from "../../../helpers/cleanAllSpecialCharacters";
-import { nuiApi } from "../../../services/nuiApi";
-import {
-  Car,
-  ClockClockwise,
-  Rewind,
-  SteeringWheel,
-  X,
-} from "@phosphor-icons/react";
+import { useNuiEvent } from "@/hooks/useNuiEvent";
+import { nuiApi } from "@/services/nuiApi";
 import { fetchNui } from "@/utils/fetchNui";
 import { Slider } from "@nextui-org/react";
+import {
+  ClockClockwise
+} from "@phosphor-icons/react";
+import React, { useEffect, useState } from "react";
 
 export const Vstance: React.FC = () => {
-  const [frontWheels, setFrontWheels] = useState(0.75);
-  const [backWheels, setBackWheels] = useState(0.75);
+  const [frontWheels, setFrontWheels] = useState<number>();
+  const [backWheels, setBackWheels] = useState<number>();
+
+  useEffect(() => {
+    const loadData = async () => {
+      const { data } = await nuiApi.post("vstance:data");
+      setFrontWheels(data.front);
+      setBackWheels(data.rear);
+    }
+
+
+    loadData()
+  }, [])
+
+
+
+
 
   const handleChangeFrontWheels = async () => {
     fetchNui("vstance:front_wheels", {
@@ -29,6 +38,12 @@ export const Vstance: React.FC = () => {
     });
   };
 
+
+  const handleCloseVstancer = async () => {
+    fetchNui("vstance:close");
+  }
+
+
   useEffect(() => {
     handleChangeFrontWheels();
   }, [frontWheels]);
@@ -38,8 +53,8 @@ export const Vstance: React.FC = () => {
   }, [backWheels]);
 
   const reset = () => {
-    setFrontWheels(0.75);
-    setBackWheels(0.75);
+    setFrontWheels(0.81);
+    setBackWheels(0.81);
   };
 
   return (
@@ -63,11 +78,11 @@ export const Vstance: React.FC = () => {
 
           <hr className="mt-6 opacity-10" />
 
-          <div className="mt-6  w-full">
-            {/* <Slider
+          <div className="mt-6 w-full">
+            <Slider
               label="Front wheels"
               step={0.01}
-              maxValue={1}
+              maxValue={0.99}
               minValue={0.75}
               size="sm"
               value={frontWheels}
@@ -75,13 +90,13 @@ export const Vstance: React.FC = () => {
                 setFrontWheels(Number(value));
               }}
               className="max-w-sm text-white"
-            /> */}
+            />
           </div>
           <div className="mt-6  w-full">
             <Slider
               label="Back wheels"
               step={0.01}
-              maxValue={1}
+              maxValue={0.99}
               minValue={0.75}
               size="sm"
               className="max-w-sm text-white"
@@ -93,6 +108,7 @@ export const Vstance: React.FC = () => {
           </div>
 
           <button
+            onClick={handleCloseVstancer}
             type="button"
             className="bg-blue-950 mt-12 font-inter disabled:bg-gray-800 disabled:cursor-not-allowed disabled:text-gray-300 hover:bg-blue-600  transition-all text-white  font-bold w-full py-4"
           >

@@ -33,11 +33,10 @@ export const Settings = () => {
                   <Car
                     size={32}
                     weight="fill"
-                    className={`${
-                      raceResumePosition === "top"
+                    className={`${raceResumePosition === "top"
                         ? "text-white"
                         : "text-blue-950"
-                    }`}
+                      }`}
                     onClick={() => handleSetResumePosition("top")}
                   />
                 </div>
@@ -47,11 +46,10 @@ export const Settings = () => {
                     onClick={() => handleSetResumePosition("bottom")}
                     size={32}
                     weight="fill"
-                    className={`${
-                      raceResumePosition === "bottom"
+                    className={`${raceResumePosition === "bottom"
                         ? "text-white"
                         : "text-blue-950"
-                    }`}
+                      }`}
                   />
                 </div>
               </div>

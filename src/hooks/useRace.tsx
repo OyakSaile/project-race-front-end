@@ -5,7 +5,7 @@ import { RaceDetails } from "../components/RaceDetails";
 export type languages = "pt-br" | "en-us";
 
 interface UseRaceContext {
-  raceDetails?: RaceDetailsFromApi;
+  raceStats?: RaceDetailsFromApi;
   isPlayerReady?: boolean;
   isUserInRace: boolean;
   raceCountDown: string;
@@ -21,34 +21,28 @@ interface UseLanguageProviderProps {
 }
 
 export interface RaceDetailsFromApi {
-  stats: {
-    selected: boolean;
-    spawn: boolean;
-    started: boolean;
-    starting: boolean;
-    finished: boolean;
-  };
+  stats: "WAITING" | "VOTING" | "SELECTED" | "STARTING" | "FINISHED"
   data: {
-    race: number;
-    race_id: number;
-    race_name: string;
-    race_type: string;
-    race_laps: number;
-    race_checkpoints: {};
-    race_flag: {};
-    race_spawn: {};
+    raceId: number;
+    raceName: string;
+    raceHoster: string;
+    raceType: string;
+    raceLaps: number;
+    raceCheckpoints: {};
+    raceFlag: {};
+    raceSpawn: {};
     hour: number;
     minute: number;
     weather: string;
-    car: string;
+    car: string
   };
   players: number;
 }
 
 export const UseRaceProvider: React.FC<UseLanguageProviderProps> = ({
-  children,
+  children
 }) => {
-  const [raceDetails, setRaceDetails] = useState<RaceDetailsFromApi>();
+  const [raceStats, setRaceStats] = useState<RaceDetailsFromApi>({} as RaceDetailsFromApi);
   const [playersInRace, setPlayersInRace] = useState(0);
   const [isPlayerReady, setPlayerReady] = useState(false);
   const [isUserInRace, setUserInRace] = useState(false);
@@ -56,7 +50,7 @@ export const UseRaceProvider: React.FC<UseLanguageProviderProps> = ({
   const [hiddeFullHud, sethiddeFullHud] = useState(false);
 
   useNuiEvent("race_details", (data: RaceDetailsFromApi) => {
-    setRaceDetails(data);
+    setRaceStats(data);
     setPlayersInRace(data.players);
     sethiddeFullHud(false);
   });
@@ -81,7 +75,7 @@ export const UseRaceProvider: React.FC<UseLanguageProviderProps> = ({
     <UseRaceContext.Provider
       value={{
         raceCountDown,
-        raceDetails,
+        raceStats,
         isPlayerReady,
         isUserInRace,
         hiddeFullHud,

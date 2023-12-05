@@ -1,30 +1,31 @@
-import { useRace } from "@/hooks/useRace";
+import { Info } from "@/components/UI/info";
+import { useNuiEvent } from "@/hooks/useNuiEvent";
+import { RaceDetailsFromApi, useRace } from "@/hooks/useRace";
 import { debugData } from "@/utils/debugData";
+import { fetchNui } from "@/utils/fetchNui";
 import { RainbowCloud, Trophy } from "@phosphor-icons/react";
 import React, { useState } from "react";
 
-interface raceStats {
-  stats: string;
-  raceId: number;
-  raceName: string;
-  raceHoster: string;
-  raceType: string;
-  raceLaps: number;
-  raceCheckpoints: {};
-  raceFlag: {};
-  raceSpawn: {};
-  hour: number;
-  minute: number;
-  weather: string;
-  car: string;
-  players: number;
-  maxPlayers: number;
-}
-
+debugData<RaceDetailsFromApi>([
+  {
+    action: "race_details",
+    data: {
+      data: {
+        raceName: "test",
+        car: "test",
+        weather: "test",
+        hour: 0,
+        minute: 20,
+        seconds: 30,
+        raceStart: "test",
+      }
+      ,
+      stats: "WAITING",
+    },
+  }
+])
 export const Lobby: React.FC = () => {
-  const [raceStats, setRaceStats] = useState<raceStats>({} as raceStats);
-  const { raceCountDown } = useRace();
-
+  const { raceCountDown, raceStats, playersInRace, isPlayerReady } = useRace();
   return (
     <div className="w-full h-screen relative">
       <div className="absolute bottom-1/2 transform translate-y-1/2   left-12 flex gap-8 flex-col  ">
@@ -32,34 +33,26 @@ export const Lobby: React.FC = () => {
           <div className="bg-black/80 h-[300px] w-[300px] p-4">
             <>
               <h1 className="text-gray-300 font-inter text-xl font-light">
-                {raceStats.raceName}
+                {raceStats?.data?.raceName}
               </h1>
               <h1 className="text-gray-300 font-inter text-xl font-light">
-                {raceStats.car}
+                {raceStats?.data.car}
               </h1>
               <div className="flex flex-col mt-4 ">
-                <div className="text-gray-300 flex items-center gap-2 ">
-                  <p>Weather:</p> {raceStats.weather}
-                </div>
 
-                <div className="text-gray-300 flex items-center gap-2 ">
-                  <p>Time:</p> {raceStats.hour}
-                </div>
 
-                <div className="text-gray-300  flex items-center gap-2 ">
-                  <p>Laps:</p>{" "}
-                  <span className="font-bold">{raceStats.raceLaps}</span>
-                </div>
-                <div className="text-gray-300  flex items-center gap-2 ">
-                  <p>Hoster:</p>{" "}
-                  <span className="font-bold">{raceStats.raceHoster}</span>
-                </div>
+
+                <Info title=">Weather:" text={raceStats?.data.weather} />
+
+                <Info title=">Time:" text={raceStats?.data.hour} />
+
+
+                <Info title=">Laps:" text={raceStats?.data.raceLaps} />
+
+                <Info title=">Hoster:" text={raceStats?.data.raceHoster} />
 
                 {raceCountDown && (
-                  <div className="text-gray-300  flex items-center gap-2 ">
-                    <p>Wait for race start:</p>{" "}
-                    <span className="font-bold">{raceCountDown}</span>
-                  </div>
+                  <Info title="Wait for race start:" text={raceCountDown} />
                 )}
               </div>
             </>
@@ -69,17 +62,28 @@ export const Lobby: React.FC = () => {
               Players
             </span>
             <h1 className="text-xl font-bold text-gray-300 drop-shadow font-robotoMono">
-              3/24
+              {playersInRace}
             </h1>
           </div>
         </div>
 
-        <button
-          className="h-[50px] border  border-green-400 text-green-400 font-inter rounded-md bg-black w-[300px] font-medium text-xl "
-          type="button"
-        >
-          JOIN RACE
-        </button>
+        {!isPlayerReady && (
+          <button
+            className="h-[50px] border  border-green-400 text-green-400 font-inter rounded-md bg-black w-[300px] font-medium text-xl "
+            type="button"
+          >
+            JOIN RACE
+          </button>
+        )}
+
+        {isPlayerReady && (
+          <button
+            className="h-[50px] border  border-red-400 text-red-400 font-inter rounded-md bg-black w-[300px] font-medium text-xl "
+            type="button"
+          >
+            LEAVE RACE
+          </button>
+        )}
       </div>
     </div>
   );

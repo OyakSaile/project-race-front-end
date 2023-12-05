@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.dark {
+  background: none !important;
+}
+
+.light {
+  background: none !important;
+}
 .Toastify__close-button {
   display: none;
 }

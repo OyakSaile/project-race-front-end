@@ -62,7 +62,7 @@ export interface RaceDetailsFromApi {
 // ]);
 
 export const Home: React.FC = () => {
-  const { raceDetails, hiddeFullHud, sethiddeFullHud, playersInRace } =
+  const { raceStats, hiddeFullHud, sethiddeFullHud, playersInRace } =
     useRace();
   const [showRaceDetails, setShowRaceDetails] = useState(true);
 
@@ -74,26 +74,26 @@ export const Home: React.FC = () => {
     sethiddeFullHud((prev) => !prev);
   });
 
-  const hasRaceDetails = raceDetails?.data.race_name !== "--";
+  // const hasRaceDetails = raceStats?.data.race_name !== "--";
 
   return (
     <div className="w-full h-screen">
-      <div className="absolute bottom-14 right-12 flex gap-4 flex-col  ">
-        {!hiddeFullHud && raceDetails ? (
+      {/* <div className="absolute bottom-14 right-12 flex gap-4 flex-col  ">
+        {!hiddeFullHud && raceStats ? (
           <>
-            {showRaceDetails && hasRaceDetails ? (
+            {showRaceDetails ? (
               <RaceDetails
                 playersInRace={playersInRace}
-                details={raceDetails}
+                details={raceStats}
               />
             ) : null}
             <RaceAcceptBalloon
-              details={raceDetails}
+              details={raceStats}
               hasRaceDetails={hasRaceDetails}
             />
           </>
         ) : null}
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -19,6 +19,21 @@ module.exports = {
       oswald: ["Oswald", "monospace"],
     },
   },
-  darkMode: "class",
-  plugins: [nextui()],
+  // darkMode: "class",
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            background: "none",
+          },
+        },
+        dark: {
+          colors: {
+            background: "none",
+          },
+        },
+      },
+    }),
+  ],
 };

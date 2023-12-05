@@ -16,6 +16,7 @@
     "axios": "^1.5.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "eslint": "^8.55.0",
     "framer-motion": "^10.16.12",
     "i": "^0.3.7",
     "lucide-react": "^0.294.0",
@@ -29,6 +30,7 @@
     "use-sound": "^4.0.1"
   },
   "devDependencies": {
+    "@types/eslint": "^8",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^2.2.0",

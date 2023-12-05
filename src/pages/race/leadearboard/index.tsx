@@ -1,11 +1,29 @@
 import mockImage from "@/assets/mock-car.jpg";
+import {
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  Table,
+} from "@nextui-org/react";
 export const RaceLeaderboard: React.FC = () => {
   const mockData = [
     {
-      name: "KAYO",
+      name: "KKKKKKKKKKKKKKKKKKKKKKKK",
       time: "1:23",
       pos: 1,
       mmr: 123,
+      bestTime: "01:23:50",
+      totalTime: "01:23:50",
+    },
+    {
+      name: "Kayo",
+      time: "1:23",
+      pos: 2,
+      mmr: 123,
+      bestTime: "01:23:50",
+      totalTime: "01:23:50",
     },
   ];
   return (
@@ -17,33 +35,41 @@ export const RaceLeaderboard: React.FC = () => {
       }}
       className="h-screen w-full p-12 relative"
     >
-      <div className=" flex-col rounded-md absolute right-12 m-auto w-[600px]">
-        <div className="bg-black  w-full p-4">
-          <h1 className="text-white font-inter text-xl font-bold text-center rounded-md">
+      <div className=" flex-col rounded-md   m-auto w-full">
+        <div className="bg-black   w-full py-3">
+          <h1 className="text-white font-inter text-xs  font-bold text-center rounded-md">
             CONCRETE CORNERS
           </h1>
         </div>
         <div className="bg-black/80 p-4 ">
-          <table className="  text-white w-full rounded-md">
-            <thead>
-              <tr>
-                <th className="">POS</th>
-                <th className="">DRIVER</th>
-                <th className="">TIME</th>
-                <th className="">MMR</th>
-              </tr>
-            </thead>
-            <tbody className="text-center">
-              {mockData.map((item) => (
-                <tr>
-                  <td className="  ">{item.pos}</td>
-                  <td className="  ">{item.name}</td>
-                  <td className="  ">{item.time}</td>
-                  <td className="  ">{item.mmr}</td>
-                </tr>
+          <Table radius="none" layout="fixed" removeWrapper>
+            <TableHeader>
+              <TableColumn className="bg-transparent text-white">
+                PLACE
+              </TableColumn>
+              <TableColumn className="bg-transparent text-white">
+                NAME
+              </TableColumn>
+              <TableColumn className="bg-transparent text-white">
+                BEST TIME
+              </TableColumn>
+              <TableColumn className="bg-transparent text-white">
+                TOTAL TIME
+              </TableColumn>
+              <TableColumn>MMR</TableColumn>
+            </TableHeader>
+            <TableBody className="text-white">
+              {mockData.map((item, index) => (
+                <TableRow className="text-white" key="1">
+                  <TableCell>{item.pos}</TableCell>
+                  <TableCell>{item.name}</TableCell>
+                  <TableCell>{item.bestTime}</TableCell>
+                  <TableCell>{item.totalTime}</TableCell>
+                  <TableCell>{item.mmr}</TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
       </div>
     </div>

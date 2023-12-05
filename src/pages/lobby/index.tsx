@@ -1,48 +1,66 @@
+import { useRace } from "@/hooks/useRace";
+import { debugData } from "@/utils/debugData";
 import { RainbowCloud, Trophy } from "@phosphor-icons/react";
-import React from "react";
+import React, { useState } from "react";
+
+interface raceStats {
+  stats: string;
+  raceId: number;
+  raceName: string;
+  raceHoster: string;
+  raceType: string;
+  raceLaps: number;
+  raceCheckpoints: {};
+  raceFlag: {};
+  raceSpawn: {};
+  hour: number;
+  minute: number;
+  weather: string;
+  car: string;
+  players: number;
+  maxPlayers: number;
+}
 
 export const Lobby: React.FC = () => {
+  const [raceStats, setRaceStats] = useState<raceStats>({} as raceStats);
+  const { raceCountDown } = useRace();
+
   return (
     <div className="w-full h-screen relative">
       <div className="absolute bottom-1/2 transform translate-y-1/2   left-12 flex gap-8 flex-col  ">
         <div>
-          <div className="bg-black/50 p-2">
-            <h1 className="text-gray-300 text-xs font-inter font-bold"></h1>
-          </div>
-          <div className="bg-black/50 h-[200px]  relative p-4">
-            <div className="bg-black/80 w-[100px] h-[100px] p-4 absolute bottom-8 flex justify-center items-center flex-col left-4">
-              <h2 className="text-gray-300 font-bold">
-                <Trophy className="font-blue-950" size={32} weight="fill" />
-              </h2>
-              <p className="text-gray-300 font-bold text-2xl">30</p>
-            </div>
-          </div>
-
-          <div className="bg-black/80 h-[210px] w-[300px] p-4">
+          <div className="bg-black/80 h-[300px] w-[300px] p-4">
             <>
               <h1 className="text-gray-300 font-inter text-xl font-light">
-                race name
+                {raceStats.raceName}
               </h1>
               <h1 className="text-gray-300 font-inter text-xl font-light">
-                Elegy Retro
+                {raceStats.car}
               </h1>
               <div className="flex flex-col mt-4 ">
                 <div className="text-gray-300 flex items-center gap-2 ">
-                  <p>Weather:</p> <RainbowCloud size={32} />
+                  <p>Weather:</p> {raceStats.weather}
                 </div>
 
                 <div className="text-gray-300 flex items-center gap-2 ">
-                  <p>Time:</p> 00:30
+                  <p>Time:</p> {raceStats.hour}
                 </div>
 
                 <div className="text-gray-300  flex items-center gap-2 ">
-                  <p>Laps:</p> <span className="font-bold">racename</span>
+                  <p>Laps:</p>{" "}
+                  <span className="font-bold">{raceStats.raceLaps}</span>
+                </div>
+                <div className="text-gray-300  flex items-center gap-2 ">
+                  <p>Hoster:</p>{" "}
+                  <span className="font-bold">{raceStats.raceHoster}</span>
                 </div>
 
-                <div className="text-gray-300  flex items-center gap-2 ">
-                  <p>Wait for race start:</p>{" "}
-                  <span className="font-bold">1M 24S</span>
-                </div>
+                {raceCountDown && (
+                  <div className="text-gray-300  flex items-center gap-2 ">
+                    <p>Wait for race start:</p>{" "}
+                    <span className="font-bold">{raceCountDown}</span>
+                  </div>
+                )}
               </div>
             </>
           </div>

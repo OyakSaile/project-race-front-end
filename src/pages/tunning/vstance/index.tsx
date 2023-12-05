@@ -1,47 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MockImage from "@/assets/mock-car.jpg";
 import { InputText } from "../../../components/Form/InputText";
 import { cleanAllSpecialCharacters } from "../../../helpers/cleanAllSpecialCharacters";
 import { nuiApi } from "../../../services/nuiApi";
-import { Car, ClockClockwise, Rewind, X } from "@phosphor-icons/react";
+import {
+  Car,
+  ClockClockwise,
+  Rewind,
+  SteeringWheel,
+  X,
+} from "@phosphor-icons/react";
+import { fetchNui } from "@/utils/fetchNui";
+import { Slider } from "@nextui-org/react";
 
 export const Vstance: React.FC = () => {
-  const [drivertag, setDriverTag] = useState("");
-  const [hasDriverTagError, setHasDriverTagError] = useState("");
+  const [frontWheels, setFrontWheels] = useState(0.75);
+  const [backWheels, setBackWheels] = useState(0.75);
 
-  const handleChooseDrivatagName = async () => {
-    const { data } = await nuiApi.post("select_name", {
-      drivertag,
+  const handleChangeFrontWheels = async () => {
+    fetchNui("vstance:front_wheels", {
+      data: frontWheels,
     });
-
-    if (data.message === "already_user_used") {
-      setHasDriverTagError("Driver Tag Already in use");
-    }
   };
 
-  const handleChangeInput = ({ target }: any) => {
-    const cleanDriverTag = cleanAllSpecialCharacters(target.value);
-    if (cleanDriverTag.length >= 20) {
-      return;
-    }
-    setHasDriverTagError("");
-    setDriverTag(cleanDriverTag);
+  const handleChangeBackWheels = async () => {
+    fetchNui("vstance:back_wheels", {
+      data: backWheels,
+    });
+  };
+
+  useEffect(() => {
+    handleChangeFrontWheels();
+  }, [frontWheels]);
+
+  useEffect(() => {
+    handleChangeBackWheels();
+  }, [backWheels]);
+
+  const reset = () => {
+    setFrontWheels(0.75);
+    setBackWheels(0.75);
   };
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(${MockImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-      className="w-full h-screen relative"
-    >
+    <div className="w-full h-screen relative">
       <div className=" bottom-1/2 left-8 transform translate-y-1/2 absolute w-[400px] bg-black/50">
         <div className="p-8">
           <div className="flex justify-between items-center ">
             <h1 className="text-2xl  items-center flex gap-2 text-white font-bold font-inter drop-shadow-sm">
-              <Car weight="fill" /> BODY KIT
+              STANCER
             </h1>
 
             <div>
@@ -49,6 +56,7 @@ export const Vstance: React.FC = () => {
                 className="text-red-300 cursor-pointer hover:brightness-50 transition-all"
                 weight="fill"
                 size={24}
+                onClick={reset}
               />
             </div>
           </div>
@@ -56,28 +64,36 @@ export const Vstance: React.FC = () => {
           <hr className="mt-6 opacity-10" />
 
           <div className="mt-6  w-full">
-            <div className="relative">
-              <InputText
-                label="DRIVER TAG"
-                value={drivertag}
-                onChange={(e) => handleChangeInput(e)}
-                id="drivertag"
-                hasError={!!hasDriverTagError}
-                errorMessage={hasDriverTagError}
-                type="text"
-                placeholder="...."
-              />
-            </div>
-
-            <p className="text-gray-300 drop-shadow-sm mt-4 font-inter">
-              This can't be changed
-            </p>
+            {/* <Slider
+              label="Front wheels"
+              step={0.01}
+              maxValue={1}
+              minValue={0.75}
+              size="sm"
+              value={frontWheels}
+              onChange={(value) => {
+                setFrontWheels(Number(value));
+              }}
+              className="max-w-sm text-white"
+            /> */}
+          </div>
+          <div className="mt-6  w-full">
+            <Slider
+              label="Back wheels"
+              step={0.01}
+              maxValue={1}
+              minValue={0.75}
+              size="sm"
+              className="max-w-sm text-white"
+              value={backWheels}
+              onChange={(value) => {
+                setBackWheels(Number(value));
+              }}
+            />
           </div>
 
           <button
-            onClick={handleChooseDrivatagName}
             type="button"
-            disabled={cleanAllSpecialCharacters(drivertag).length < 3}
             className="bg-blue-950 mt-12 font-inter disabled:bg-gray-800 disabled:cursor-not-allowed disabled:text-gray-300 hover:bg-blue-600  transition-all text-white  font-bold w-full py-4"
           >
             CLOSE

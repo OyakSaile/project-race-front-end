@@ -13,6 +13,7 @@ import { SelectRacePage } from "./pages/lobby/pages/select-race";
 import { SelectRace } from "./pages/lobby/pages/select-race/SelectRace";
 import { RaceLeaderboard } from "./pages/race/leadearboard";
 import { Vstance } from "./pages/tunning/vstance";
+import { CarList } from "./pages/car-list";
 
 export const RoutesPublic = () => {
   const navigate = useNavigate();
@@ -55,7 +56,15 @@ export const RoutesPublic = () => {
       component: <RaceCreate />,
     },
     {
-      path: "race/leadearboard",
+      path: "/car-list",
+      component: <CarList />,
+    },
+    {
+      path: "/race/leadearboard",
+      component: <RaceLeaderboard />,
+    },
+    {
+      path: "stats/leadearboard",
       component: <RaceLeaderboard />,
     },
     {

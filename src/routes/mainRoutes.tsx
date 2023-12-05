@@ -24,7 +24,7 @@ export const MainRoutes = () => {
     <HashRouter>
       <UseLanguageProvider>
         <UseRaceProvider>
-          <div className="h-screen w-full relative">
+          <div className="h-screen w-full relative bg-none">
             <Hud />
             <RoutesPublic />
 

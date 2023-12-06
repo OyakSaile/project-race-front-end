@@ -3,6 +3,7 @@ import { useNuiEvent } from "../../../../../hooks/useNuiEvent";
 import { fetchNui } from "../../../../../utils/fetchNui";
 import { debugData } from "../../../../../utils/debugData";
 import { useRace } from "../../../../../hooks/useRace";
+import { nuiApi } from "@/services/nuiApi";
 export const SelectRace = () => {
   const { raceCountDown } = useRace();
   const [races, setRaces] = useState<any>([]);
@@ -10,6 +11,16 @@ export const SelectRace = () => {
 
   const [race, setRace] = useState(0);
   const [car, setCar] = useState(0);
+
+  useEffect(() => {
+    const getData = async () => {
+      await nuiApi.post("votes:data", {
+        data: "",
+      });
+    };
+
+    getData();
+  }, []);
 
   // debugData([
   //   {

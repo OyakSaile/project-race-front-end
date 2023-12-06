@@ -13,6 +13,7 @@ interface RaceTable {
   position: string;
   role: Roles;
   gap: string;
+  gapSymbol: string;
 }
 
 interface Race_Data {

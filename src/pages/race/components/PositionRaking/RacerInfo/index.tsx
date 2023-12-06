@@ -14,6 +14,7 @@ interface RacerInfoProps {
   bestTime: string;
   gap: string;
   position: string;
+  gapSymbol: string;
 }
 export const RacerInfo = ({
   name,
@@ -21,6 +22,7 @@ export const RacerInfo = ({
   bestTime,
   gap,
   position,
+  gapSymbol,
 }: RacerInfoProps) => {
   const raceMapped: { [key: string]: { icon: JSX.Element; color: string } } = {
     vip: {
@@ -43,6 +45,12 @@ export const RacerInfo = ({
     },
   };
 
+  const gapColor: { [key: string]: string } = {
+    "-": "text-green-400",
+    "+": "text-red-400",
+    "": "text-gray-400",
+  };
+
   return (
     <div className={twMerge(" text-white grid", gridSpace)}>
       <span className="  bg-black/50  font-robotoMono  flex justify-center items-center font-bold text-2xl ">
@@ -56,7 +64,14 @@ export const RacerInfo = ({
       </span>
 
       <span className=" bg-black/50  flex items-center justify-center   font-inter px-4 py-2  ">
-        <h2 className="uppercase  font-inter font-bold  text-red-400">{gap}</h2>
+        <h2
+          className={twMerge(
+            "uppercase  font-inter font-bold 0",
+            gapColor[gapSymbol]
+          )}
+        >
+          {gap}
+        </h2>
       </span>
       <span className=" bg-black/50  flex items-end justify-end   font-inter px-4 py-2  ">
         <h2 className="uppercase font-robotoMono  font-bold  text-white">

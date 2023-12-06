@@ -6,6 +6,7 @@ import { isMotionComponent } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import matchFound from "../../audios/matchfound.mp3";
 import useSound from "use-sound";
+import { Chat } from "../Chat";
 
 export const Hud = () => {
   const [play] = useSound(matchFound);
@@ -30,6 +31,10 @@ export const Hud = () => {
         hideProgressBar={true}
         position="top-right"
       />
+
+      {/* <div className="absolute top-12 left-12">
+        <Chat />
+      </div> */}
     </div>
   );
 };

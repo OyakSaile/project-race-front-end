@@ -8,6 +8,7 @@ interface PositionRankingProps {
     position: string;
     role: Roles;
     gap: string;
+    gapSymbol: string;
   }[];
 
   position: {
@@ -51,6 +52,7 @@ export const PositionRanking = ({
             key={index}
             name={item.name}
             role={item.role}
+            gapSymbol={item.gapSymbol}
           />
         ))}
     </div>

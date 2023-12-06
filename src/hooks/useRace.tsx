@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { useNuiEvent } from "./useNuiEvent";
 import { RaceDetails } from "../components/RaceDetails";
+import { debugData } from "@/utils/debugData";
 
 export type languages = "pt-br" | "en-us";
 
@@ -21,7 +22,13 @@ interface UseLanguageProviderProps {
 }
 
 export interface RaceDetailsFromApi {
-  stats: "WAITING" | "VOTING" | "SELECTED" | "STARTING" | "FINISHED"
+  stats:
+    | "WAITING"
+    | "VOTING"
+    | "SELECTED"
+    | "STARTING"
+    | "FINISHED"
+    | "STARTED";
   data: {
     raceId: number;
     raceName: string;
@@ -34,25 +41,48 @@ export interface RaceDetailsFromApi {
     hour: number;
     minute: number;
     weather: string;
-    car: string
+    car: string;
   };
   players: number;
 }
 
+// debugData<RaceDetailsFromApi>([
+//   {
+//     action: "race_details",
+//     data: {
+//       players: 0,
+//       data: {
+//         raceId: 0,
+//         raceName: "TESTANDO NOME DA CORRIDA DE RETARDADO FAEKOFEAKOEFKO",
+//         raceHoster: "pr",
+//         raceType: "oi",
+//         raceLaps: 0,
+//         raceCheckpoints: {},
+//         raceFlag: {},
+//         raceSpawn: {},
+//         hour: 0,
+//         minute: 0,
+//         weather: "oi",
+//         car: "R34",
+//       },
+//       stats: "WAITING",
+//     },
+//   },
+// ]);
+
 export const UseRaceProvider: React.FC<UseLanguageProviderProps> = ({
-  children
+  children,
 }) => {
-  const [raceStats, setRaceStats] = useState<RaceDetailsFromApi>({} as RaceDetailsFromApi);
+  const [raceStats, setRaceStats] = useState<RaceDetailsFromApi>();
   const [playersInRace, setPlayersInRace] = useState(0);
   const [isPlayerReady, setPlayerReady] = useState(false);
   const [isUserInRace, setUserInRace] = useState(false);
   const [raceCountDown, setRaceCountDown] = useState("");
   const [hiddeFullHud, sethiddeFullHud] = useState(false);
 
-  useNuiEvent("race_details", (data: RaceDetailsFromApi) => {
+  useNuiEvent("race_details", (data) => {
     setRaceStats(data);
     setPlayersInRace(data.players);
-    sethiddeFullHud(false);
   });
 
   useNuiEvent("race_players", (data) => {

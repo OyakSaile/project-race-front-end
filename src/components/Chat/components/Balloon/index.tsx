@@ -5,8 +5,8 @@ export const Balloon = () => {
         <span className="bg-red-500 max-w-[130px] text-xs flex justify-center items-center p-1 px-4 font-inter font-bold text-white rounded-md">
           STAFF
         </span>
-        <p className="text-white font-bold font-inter">Skada [2]:</p>
-        <p className="text-white">Mensagem de teste</p>
+        <p className="text-white font-bold text-xs font-inter">Skada [2]:</p>
+        <p className="text-white text-xs">Mensagem de teste</p>
       </div>
     </div>
   );

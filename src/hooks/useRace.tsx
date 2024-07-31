@@ -46,29 +46,29 @@ export interface RaceDetailsFromApi {
   players: number;
 }
 
-// debugData<RaceDetailsFromApi>([
-//   {
-//     action: "race_details",
-//     data: {
-//       players: 0,
-//       data: {
-//         raceId: 0,
-//         raceName: "TESTANDO NOME DA CORRIDA DE RETARDADO FAEKOFEAKOEFKO",
-//         raceHoster: "pr",
-//         raceType: "oi",
-//         raceLaps: 0,
-//         raceCheckpoints: {},
-//         raceFlag: {},
-//         raceSpawn: {},
-//         hour: 0,
-//         minute: 0,
-//         weather: "oi",
-//         car: "R34",
-//       },
-//       stats: "WAITING",
-//     },
-//   },
-// ]);
+debugData<RaceDetailsFromApi>([
+  {
+    action: "race_details",
+    data: {
+      players: 0,
+      data: {
+        raceId: 0,
+        raceName: "RACE TEST",
+        raceHoster: "#",
+        raceType: "laps",
+        raceLaps: 3,
+        raceCheckpoints: {},
+        raceFlag: {},
+        raceSpawn: {},
+        hour: 0,
+        minute: 0,
+        weather: "RAINING",
+        car: "R34",
+      },
+      stats: "FINISHED",
+    },
+  },
+]);
 
 export const UseRaceProvider: React.FC<UseLanguageProviderProps> = ({
   children,

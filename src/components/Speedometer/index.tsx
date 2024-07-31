@@ -2,14 +2,15 @@ import { twMerge } from "tailwind-merge";
 
 interface SpeedometerProps {
   mph: string;
+  quilometragem: string;
 }
 
-export const Speedometer = ({ mph }: SpeedometerProps) => {
+export const Speedometer = ({ mph, quilometragem }: SpeedometerProps) => {
   const SplittedMPH = mph.split("");
 
   return (
     <div className="font-oswald italic text-3xl items-end  flex-col text-gray-300/40   leading-none font-bold   drop-shadow-2xl flex   ">
-      MPH
+      {quilometragem}
       <div className="flex">
         {SplittedMPH.map((item, index) => {
           return (

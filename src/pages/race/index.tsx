@@ -14,6 +14,8 @@ interface RaceTable {
   role: Roles;
   gap: string;
   gapSymbol: string;
+  gameped: string;
+  ranking: string;
 }
 
 interface Race_Data {
@@ -162,7 +164,9 @@ export const Race = () => {
           time={{
             current: raceTime.lap_time,
             bestTime: hasBestTime,
+            totalTime: raceTime.total_time,
             dnf: hasDnf,
+            is_sprint_race: race.is_sprint_race,
           }}
           position={{
             currentPosition: race.pos,

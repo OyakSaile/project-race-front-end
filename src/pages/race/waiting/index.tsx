@@ -35,7 +35,7 @@ export function RaceWaiting() {
           </RenderIf>
 
           <RenderIf
-            condition={raceStats?.data.raceHoster.toLocaleLowerCase() !== "pr"}
+            condition={raceStats?.data.raceHoster.toLocaleLowerCase() !== "#"}
           >
             <Info title="Hoster:" text={raceStats?.data.raceHoster} />
           </RenderIf>

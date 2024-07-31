@@ -3,11 +3,15 @@ import {
   RocketLaunch,
   SketchLogo,
   Sword,
+  Pencil,
+  Keyboard,
+  CrownSimple,
+  
 } from "@phosphor-icons/react";
 import { twMerge } from "tailwind-merge";
 import { gridSpace } from "..";
 
-export type Roles = "vip" | "staff" | "booster" | "streamer";
+export type Roles = "creator" | "vip" | "staff" | "booster" | "streamer";
 interface RacerInfoProps {
   name: string;
   role: Roles;
@@ -15,6 +19,8 @@ interface RacerInfoProps {
   gap: string;
   position: string;
   gapSymbol: string;
+  gameped: string;
+  ranking: string;
 }
 export const RacerInfo = ({
   name,
@@ -23,10 +29,16 @@ export const RacerInfo = ({
   gap,
   position,
   gapSymbol,
+  gameped,
+  ranking,
 }: RacerInfoProps) => {
   const raceMapped: { [key: string]: { icon: JSX.Element; color: string } } = {
     vip: {
       icon: <SketchLogo className="text-orange-400" size={16} weight="fill" />,
+      color: "text-pink-300",
+    },
+    creator: {
+      icon: <Pencil className="text-blue-600" size={16} weight="fill" />,
       color: "text-pink-300",
     },
     staff: {
@@ -56,12 +68,31 @@ export const RacerInfo = ({
       <span className="  bg-black/50  font-robotoMono  flex justify-center items-center font-bold text-2xl ">
         {position}
       </span>
+
       <span className=" bg-black/50  font-inter w-full px-4 py-2 flex items-center justify-between">
-        <h2 className="uppercase font-inter gap-1  font-bold flex items-center ">
+
+        <h2 className="uppercase font-inter gap-2  font-bold flex items-center ">
+          {gameped === 'controle' && (
+            <GameController className="text-gray-400" size={20} weight="fill" />
+          )}
+          {gameped === 'teclado' && (
+            <Keyboard className="text-gray-400" size={20} weight="fill" />
+          )} 
           {name.length > 10 ? name.slice(0, 10) + "..." : name}{" "}
           {raceMapped[role]?.icon}
+          {ranking === 'gold' && (
+            <CrownSimple className="text-yellow-400" size={15} weight="fill" />
+          )}
+          {ranking === 'silver' && (
+            <CrownSimple className="text-gray-400" size={15} weight="fill" />
+          )} 
+           {ranking === 'bronze' && (
+            <CrownSimple className="text-yellow-900" size={15} weight="fill" />
+          )} 
         </h2>
       </span>
+
+
 
       <span className=" bg-black/50  flex items-center justify-center   font-inter px-4 py-2  ">
         <h2

@@ -15,6 +15,7 @@ import { RaceLeaderboard } from "./pages/race/leadearboard";
 import { Vstance } from "./pages/tunning/vstance";
 import { CarList } from "./pages/car-list";
 import { RaceWaiting } from "./pages/race/waiting";
+import { RaceDetails } from "./pages/race/details";
 
 export const RoutesPublic = () => {
   const navigate = useNavigate();
@@ -45,6 +46,10 @@ export const RoutesPublic = () => {
       component: <Race />,
     },
     {
+      path: "/race/details",
+      component: <RaceDetails />,
+    },
+    {
       path: "/race/countdown",
       component: <RaceCountDown />,
     },
@@ -69,7 +74,7 @@ export const RoutesPublic = () => {
       component: <RaceLeaderboard />,
     },
     {
-      path: "stats/leaderboard",
+      path: "/stats/leaderboard",
       component: <RaceLeaderboard />,
     },
     {
@@ -85,7 +90,7 @@ export const RoutesPublic = () => {
       component: <Lobby />,
     },
     {
-      path: "lobby/select-race",
+      path: "/lobby/select-race",
       component: <SelectRace />,
     },
   ];

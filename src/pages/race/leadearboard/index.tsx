@@ -12,7 +12,9 @@ import {
   TableCell,
   Table,
 } from "@nextui-org/react";
+import { GameController, Keyboard } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+
 export const RaceLeaderboard: React.FC = () => {
   const { raceStats } = useRace();
   const [leaderBoard, setLeaderBoard] = useState([] as any);
@@ -36,16 +38,16 @@ export const RaceLeaderboard: React.FC = () => {
   };
 
   return (
-    <div className="h-screen w-full p-12 relative">
-      <div className=" flex-col rounded-md   m-auto w-full">
-        <div className="bg-black   w-full py-3">
-          <h1 className="text-white font-inter text-xs  font-bold text-center rounded-md">
+    <div className="h-screen w-full p-4 flex flex-col justify-between">
+      <div className="flex flex-col rounded-md w-full">
+        <div className="bg-black w-full py-3">
+          <h1 className="text-white font-inter text-xs font-bold text-center rounded-md">
             {raceStats?.data.raceName}
           </h1>
         </div>
-        <div className="bg-black/80 p-4  ">
+        <div className="bg-black/80 p-4 overflow-y-auto max-h-[calc(100vh-200px)] no-scrollbar w-full">
           <Table
-            className="overflow-y-scroll max-h-[500px] no-scrollbar"
+            className="w-full"
             radius="none"
             layout="fixed"
             removeWrapper
@@ -68,10 +70,20 @@ export const RaceLeaderboard: React.FC = () => {
               </TableColumn>
             </TableHeader>
             <TableBody className="text-white">
-              {leaderBoard.map((item: any) => (
+              {leaderBoard.map((item: any, index: any) => (
                 <TableRow className="text-white" key={item.userName}>
-                  <TableCell>{item.pos}</TableCell>
-                  <TableCell>{item.userName}</TableCell>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>
+                    <div className='flex gap-2'>
+                      {item.gameped === 'teclado' && (
+                        <Keyboard className="text-gray-400" size={20} weight="fill" />
+                      )} 
+                      {item.gameped === 'controle' && (
+                        <GameController className="text-gray-400" size={20} weight="fill" />
+                      )}
+                      {item.userName.length > 13 ? item.userName.slice(0, 13) + "..." : item.userName}
+                    </div>
+                   </TableCell>
                   <TableCell>{item.bestLap}</TableCell>
                   <TableCell>{item.totalTime}</TableCell>
                   <TableCell>{item.mmr}</TableCell>
@@ -80,11 +92,12 @@ export const RaceLeaderboard: React.FC = () => {
             </TableBody>
           </Table>
         </div>
-
-        <div onClick={handleClose} className="w-[200px] m-auto mt-12">
-          <Button>CLOSE</Button>
-        </div>
+      </div>
+      <div onClick={handleClose} className="w-[200px] m-auto mt-4 mb-8 flex justify-center">
+        <Button>CLOSE</Button>
       </div>
     </div>
   );
-};
+}
+
+export default RaceLeaderboard;

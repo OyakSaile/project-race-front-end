@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import { RacerInfo, Roles } from "./RacerInfo";
-export const gridSpace = "grid-cols-[50px_190px_150px_120px]";
+export const gridSpace = "grid-cols-[50px_245px_150px_120px]";
 interface PositionRankingProps {
   raceTable: {
     name: string;
@@ -9,6 +9,8 @@ interface PositionRankingProps {
     role: Roles;
     gap: string;
     gapSymbol: string;
+    gameped: string;
+    ranking: string;
   }[];
 
   position: {
@@ -36,6 +38,7 @@ export const PositionRanking = ({
             GAP
           </h2>
         </span>
+
         <span className=" bg-black/50 flex items-end justify-end   font-inter px-4 py-2  ">
           <h2 className="uppercase   justify-end text-xs  items-end font-inter font-medium flex  gap-2 text-white">
             Best LAP
@@ -53,6 +56,8 @@ export const PositionRanking = ({
             name={item.name}
             role={item.role}
             gapSymbol={item.gapSymbol}
+            gameped={item.gameped}
+            ranking={item.ranking}
           />
         ))}
     </div>

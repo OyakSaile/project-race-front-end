@@ -18,13 +18,15 @@ export const Info = ({
   return (
     <div
       className={twMerge(
-        "text-gray-300  flex items-center gap-2",
+        "flex items-center gap-2 font-inter",
         breakWord && "flex-col items-start gap-1",
         className
       )}
     >
-      {title && <p>{title}</p>}
-      <span className="font-bold">{text}</span>
+      {title && <p className="text-white/70 font-normal text-xs">{title}</p>}
+      <span className="font-bold text-xs uppercase font-inter text-white shadowText">
+        {text}
+      </span>
       {children}
     </div>
   );

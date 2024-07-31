@@ -14,7 +14,7 @@ export const ChooseName: React.FC = () => {
     });
 
     if (data.message === "already_user_used") {
-      setHasDriverTagError("Driver Tag Already in use");
+      setHasDriverTagError("Name is already in use");
     }
   };
 
@@ -37,14 +37,14 @@ export const ChooseName: React.FC = () => {
           <div className="mt-12   w-full">
             <div className="relative">
               <InputText
-                label="DRIVER TAG"
+                label="NICKNAME"
                 value={drivertag}
                 onChange={(e) => handleChangeInput(e)}
                 id="drivertag"
                 hasError={!!hasDriverTagError}
                 errorMessage={hasDriverTagError}
                 type="text"
-                placeholder="...."
+                placeholder=""
               />
             </div>
 
@@ -56,7 +56,7 @@ export const ChooseName: React.FC = () => {
           <button
             onClick={handleChooseDrivatagName}
             type="button"
-            disabled={cleanAllSpecialCharacters(drivertag).length < 3}
+            disabled={cleanAllSpecialCharacters(drivertag).length < 2}
             className="bg-blue-950 mt-12 font-inter disabled:bg-gray-800 disabled:cursor-not-allowed disabled:text-gray-300 hover:bg-blue-600  transition-all text-white  font-bold w-full py-4"
           >
             CONFIRM

@@ -11,13 +11,15 @@ import { useState } from "react";
 export const MainRoutes = () => {
   const [isSpeedOmeterVisible, setSpeedOmeterVisible] = useState(false);
   const [mph, setMph] = useState("");
+  const [quilometragem, setQuilometragem] = useState("");
 
   useNuiEvent("is_player_in_vehicle", (data) => {
     setSpeedOmeterVisible(data);
   });
 
   useNuiEvent("speedometer", (data) => {
-    setMph(data);
+    setMph(data.speed);
+    setQuilometragem(data.quilometragem);
   });
 
   return (
@@ -29,7 +31,9 @@ export const MainRoutes = () => {
             <RoutesPublic />
 
             <div className="absolute font-bold text-3xl text-white  bottom-8 right-10 ">
-              {isSpeedOmeterVisible && <Speedometer mph={mph} />}
+              {isSpeedOmeterVisible && (
+                <Speedometer mph={mph} quilometragem={quilometragem} />
+              )}
             </div>
           </div>
         </UseRaceProvider>

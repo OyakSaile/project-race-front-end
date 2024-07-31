@@ -12,11 +12,11 @@ export const DefaultTitle = ({
 }: DefaultTitleProps) => {
   return (
     <h1
+      {...rest}
       className={twMerge(
-        "text-gray-300 font-bold font-inter text-xl",
+        "text-white font-oswald font-bold text-xs lg:text-xl",
         className
       )}
-      {...rest}
     >
       {title ? title : ""}
       {children}

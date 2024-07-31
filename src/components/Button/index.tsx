@@ -14,7 +14,7 @@ export const Button: React.FC<ButtonProps> = ({
       {...rest}
       type="submit"
       className={twMerge(
-        "bg-blue-950  font-inter disabled:bg-gray-800 disabled:cursor-not-allowed disabled:text-gray-300 hover:bg-blue-600  transition-all text-white  font-bold w-full py-4",
+        "bg-blue-950/90 font-oswald disabled:bg-gray-800 disabled:cursor-not-allowed disabled:text-gray-300 hover:bg-blue-950  transition-all text-white  font-bold w-full py-4 shadowText",
         className
       )}
     >

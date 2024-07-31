@@ -35,7 +35,7 @@ export const CarList: React.FC = () => {
 
   return (
     <div className="w-full h-screen relative bg-none">
-      <div className=" bottom-1/2  left-8 transform translate-y-1/2 absolute w-[400px] bg-black/80">
+      <div className=" bottom-1/2  left-8 transform translate-y-1/2 absolute max-w-[500px] bg-black/80">
         <div className="p-8">
           <div className="flex justify-between items-center ">
             <h1 className="text-2xl  items-center flex gap-2 text-white font-bold font-inter drop-shadow-sm">
@@ -53,16 +53,16 @@ export const CarList: React.FC = () => {
 
           <hr className="mt-6 opacity-10" />
 
-          <div className="mt-6  no-scrollbar h-[500px] overflow-y-auto gap-4 grid grid-cols-2">
+          <div className="mt-6  no-scrollbar h-[500px] overflow-y-auto gap-4 grid grid-cols-3">
             <RenderIf condition={cars.length > 0}>
               {cars?.map((item, index) => (
                 <div key={index} className="text-left flex flex-col gap-4">
                   <div>
-                    <img className="w-[150px]" src={MockImage} alt="" />
+                    <img className="w-[150px]" src={item.image} alt="" />
                   </div>
                   <div className="flex gap-2 flex-col">
                     <Info
-                      className="text-white font-bold leading-4"
+                      className="text-white font-bold uppercase leading-4"
                       title={item.name}
                     ></Info>
 

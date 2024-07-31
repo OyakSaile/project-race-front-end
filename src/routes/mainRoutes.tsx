@@ -1,16 +1,16 @@
+import { useState } from "react";
 import { HashRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutesPublic } from "../Router";
 import { Hud } from "../components/Hud";
-import { UseLanguageProvider } from "../hooks/useLanguage";
-import { UseRaceProvider } from "../hooks/useRace";
 import { Speedometer } from "../components/Speedometer";
+import { UseLanguageProvider } from "../hooks/useLanguage";
 import { useNuiEvent } from "../hooks/useNuiEvent";
-import { useState } from "react";
+import { UseRaceProvider } from "../hooks/useRace";
 
 export const MainRoutes = () => {
-  const [isSpeedOmeterVisible, setSpeedOmeterVisible] = useState(false);
-  const [mph, setMph] = useState("");
+  const [isSpeedOmeterVisible, setSpeedOmeterVisible] = useState(true);
+  const [mph, setMph] = useState("240");
   const [quilometragem, setQuilometragem] = useState("");
 
   useNuiEvent("is_player_in_vehicle", (data) => {
@@ -30,7 +30,7 @@ export const MainRoutes = () => {
             <Hud />
             <RoutesPublic />
 
-            <div className="absolute font-bold text-3xl text-white  bottom-8 right-10 ">
+            <div className="absolute font-bold text-3xl text-white  bottom-32 right-10 ">
               {isSpeedOmeterVisible && (
                 <Speedometer mph={mph} quilometragem={quilometragem} />
               )}

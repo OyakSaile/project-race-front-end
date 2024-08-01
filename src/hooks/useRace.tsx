@@ -46,29 +46,29 @@ export interface RaceDetailsFromApi {
   players: number;
 }
 
-debugData<RaceDetailsFromApi>([
-  {
-    action: "race_details",
-    data: {
-      players: 0,
-      data: {
-        raceId: 0,
-        raceName: "RACE TEST",
-        raceHoster: "#",
-        raceType: "laps",
-        raceLaps: 3,
-        raceCheckpoints: {},
-        raceFlag: {},
-        raceSpawn: {},
-        hour: 0,
-        minute: 0,
-        weather: "RAINING",
-        car: "R34",
-      },
-      stats: "FINISHED",
-    },
-  },
-]);
+// debugData<RaceDetailsFromApi>([
+//   {
+//     action: "race_details",
+//     data: {
+//       players: 0,
+//       data: {
+//         raceId: 0,
+//         raceName: "RACE TEST",
+//         raceHoster: "#",
+//         raceType: "laps",
+//         raceLaps: 3,
+//         raceCheckpoints: {},
+//         raceFlag: {},
+//         raceSpawn: {},
+//         hour: 0,
+//         minute: 0,
+//         weather: "RAINING",
+//         car: "R34",
+//       },
+//       stats: "FINISHED",
+//     },
+//   },
+// ]);
 
 export const UseRaceProvider: React.FC<UseLanguageProviderProps> = ({
   children,

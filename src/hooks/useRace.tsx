@@ -2,6 +2,7 @@ import { ReactNode, createContext, useContext, useState } from "react";
 import { useNuiEvent } from "./useNuiEvent";
 import { RaceDetails } from "../components/RaceDetails";
 import { debugData } from "@/utils/debugData";
+import { RaceCountDownModel } from "@/models/race-countdown.model";
 
 export type languages = "pt-br" | "en-us";
 
@@ -9,7 +10,7 @@ interface UseRaceContext {
   raceStats?: RaceDetailsFromApi;
   isPlayerReady?: boolean;
   isUserInRace: boolean;
-  raceCountDown: string;
+  raceCountDown: RaceCountDownModel;
   hiddeFullHud: boolean;
   sethiddeFullHud: React.Dispatch<React.SetStateAction<boolean>>;
   playersInRace?: number;
@@ -77,8 +78,21 @@ export const UseRaceProvider: React.FC<UseLanguageProviderProps> = ({
   const [playersInRace, setPlayersInRace] = useState(0);
   const [isPlayerReady, setPlayerReady] = useState(false);
   const [isUserInRace, setUserInRace] = useState(false);
-  const [raceCountDown, setRaceCountDown] = useState("");
+  const [raceCountDown, setRaceCountDown] = useState<RaceCountDownModel>(
+    {} as RaceCountDownModel
+  );
   const [hiddeFullHud, sethiddeFullHud] = useState(false);
+
+  debugData([
+    {
+      action: "race:next-race-countdown",
+      data: {
+        hour: "-",
+        minute: "2M",
+        second: "20S",
+      },
+    },
+  ]);
 
   useNuiEvent("race_details", (data) => {
     setRaceStats(data);
@@ -97,7 +111,7 @@ export const UseRaceProvider: React.FC<UseLanguageProviderProps> = ({
     setUserInRace(data);
   });
 
-  useNuiEvent("race:next-race-countdown", (data) => {
+  useNuiEvent<RaceCountDownModel>("race:next-race-countdown", (data) => {
     setRaceCountDown(data);
   });
 

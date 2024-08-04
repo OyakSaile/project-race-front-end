@@ -7,14 +7,15 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 
 import { Box } from "@/components/Box";
+import { NextRaceCountDown } from "@/components/NextRaceCountDown";
 
 export const Lobby: React.FC = () => {
   const { raceCountDown, raceStats, isPlayerReady, playersInRace } = useRace();
 
   return (
     <div className="w-full h-screen relative">
-      <div className="absolute bottom-1/2 w-[250px] lg:w-[437px] transform translate-y-1/2 left-12 flex flex-col">
-        <Box>
+      <div className="absolute bottom-1/2 w-[250px] 2xl:w-[437px] transform translate-y-1/2 left-12 flex flex-col">
+        <Box className="w-full">
           <RenderIf condition={!!raceStats}>
             <div className="flex flex-col">
               <div className="w-full p-4">
@@ -93,7 +94,7 @@ export const Lobby: React.FC = () => {
                         raceStats?.stats === "SELECTED"
                       }
                     >
-                      <Info text={raceCountDown} />
+                      <NextRaceCountDown />
                     </RenderIf>
 
                     <RenderIf condition={raceStats?.stats === "FINISHED"}>

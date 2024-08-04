@@ -1,4 +1,5 @@
 import { Button } from "@/components/Button";
+import { NextRaceCountDown } from "@/components/NextRaceCountDown";
 import { RenderIf } from "@/components/RenderIf";
 import { DefaultTitle } from "@/components/UI/DefaultTitle";
 import { Info } from "@/components/UI/info";
@@ -47,7 +48,7 @@ export function RaceWaiting() {
           />
 
           <div className="w-full  flex justify-center">
-            <Info text={raceCountDown} />
+            <NextRaceCountDown />
           </div>
         </div>
       </div>

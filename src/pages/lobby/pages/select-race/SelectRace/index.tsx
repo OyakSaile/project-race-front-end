@@ -11,6 +11,9 @@ import CarImage3 from "@/assets/select-race/car-3.png";
 import CarImage4 from "@/assets/select-race/car-4.png";
 
 import { ImageCard } from "@/components/ImageCard";
+import { Badge } from "@/components/Badge";
+import { RenderIf } from "@/components/RenderIf";
+import { NextRaceCountDown } from "@/components/NextRaceCountDown";
 
 export const SelectRace = () => {
   const { raceCountDown } = useRace();
@@ -118,9 +121,19 @@ export const SelectRace = () => {
   });
 
   return (
-    <div className="h-screen w-full flex flex-col">
+    <div className="h-screen w-full flex flex-col relative">
       {!race && races.length > 1 && (
         <div className="w-full h-full grid grid-cols-2">
+          <div className="absolute z-50 flex-col flex top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <h2 className="text-center text-white font-monomaniac text-xl absolute -top-9 left-1/2 -translate-x-1/2 text-nowrap">
+              CHOOSE RACE
+            </h2>
+
+            <div className="flex gap-2">
+              <NextRaceCountDown />
+            </div>
+          </div>
+
           {races.map((race: any, index: any) => (
             <ImageCard
               onClick={() => setRace(index + 1)}
@@ -135,6 +148,15 @@ export const SelectRace = () => {
 
       {cars.length > 1 && race !== 0 && (
         <div className="w-full h-full">
+          <div className="absolute z-50 flex-col flex top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <h2 className="text-center text-white font-monomaniac text-xl absolute -top-9 left-1/2 -translate-x-1/2 text-nowrap">
+              CHOOSE CAR
+            </h2>
+
+            <div className="flex gap-2">
+              <NextRaceCountDown />
+            </div>
+          </div>
           <div className="w-full h-full grid grid-cols-2">
             {cars.map((car: any, index: any) => (
               <ImageCard

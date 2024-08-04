@@ -13,7 +13,7 @@ export function Box({
   return (
     <div
       {...props}
-      className={twMerge("w-[250px] lg:w-[437px]", props.className)}
+      className={twMerge("w-[250px] 3xl:w-[437px]", props.className)}
     >
       <h2 className="text-white mb-2 text-base font-medium font-monomaniac tracking-wide">
         {floatingTitle}

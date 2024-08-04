@@ -9,7 +9,7 @@ import { useNuiEvent } from "../hooks/useNuiEvent";
 import { UseRaceProvider } from "../hooks/useRace";
 
 export const MainRoutes = () => {
-  const [isSpeedOmeterVisible, setSpeedOmeterVisible] = useState(true);
+  const [isSpeedOmeterVisible, setSpeedOmeterVisible] = useState(false);
   const [mph, setMph] = useState("");
   const [rpm, setRPM] = useState(0);
   const [quilometragem, setQuilometragem] = useState("");

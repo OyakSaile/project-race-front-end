@@ -13,10 +13,10 @@ export function KeyboardBadge({
 }: KeyboardBadgeProps) {
   return (
     <div className={twMerge("flex gap-4 items-center", props.className)}>
-      <h2 className="bg-blue-primary/50 text-white font-oswald py-1 px-2">
+      <h2 className="bg-blue-primary/50 text-white font-monomaniac py-1 px-2">
         {keyboard}
       </h2>
-      <h3 className="text-white font-oswald text-base font-medium">
+      <h3 className="text-white font-monomaniac text-base font-medium">
         {description}
       </h3>
     </div>

@@ -17,6 +17,7 @@ module.exports = {
       inter: ["Inter", "sans-serif"],
       robotoMono: ["Roboto Mono", "monospace"],
       oswald: ["Oswald", "monospace"],
+      monomaniac: ["Monomaniac One", "monospace"],
     },
   },
   // darkMode: "class",

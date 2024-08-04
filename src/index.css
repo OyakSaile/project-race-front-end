@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -48,7 +48,7 @@
 
 body {
   background: url("./assets/mock-car.jpg");
-  font-family: "Oswald", sans-serif;
+  font-family: "Monomaniac One", sans-serif;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */

@@ -14,7 +14,7 @@ export const DefaultTitle = ({
     <h1
       {...rest}
       className={twMerge(
-        "text-white font-oswald font-bold text-xs lg:text-xl",
+        "text-white font-monomaniac font-bold text-xs lg:text-xl",
         className
       )}
     >

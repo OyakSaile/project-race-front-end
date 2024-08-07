@@ -47,7 +47,7 @@
 }
 
 body {
-  /* background: url("./assets/mock-car.jpg"); */
+  background: url("./assets/mock-car.jpg");
   font-family: "Monomaniac One", sans-serif;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */

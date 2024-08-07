@@ -9,10 +9,10 @@ import { useNuiEvent } from "../hooks/useNuiEvent";
 import { UseRaceProvider } from "../hooks/useRace";
 
 export const MainRoutes = () => {
-  const [isSpeedOmeterVisible, setSpeedOmeterVisible] = useState(false);
-  const [mph, setMph] = useState("");
-  const [rpm, setRPM] = useState(0);
-  const [quilometragem, setQuilometragem] = useState("");
+  const [isSpeedOmeterVisible, setSpeedOmeterVisible] = useState(true);
+  const [mph, setMph] = useState("890");
+  const [gear, setGear] = useState(0);
+  const [quilometragem, setQuilometragem] = useState("MPH");
 
   useNuiEvent("is_player_in_vehicle", (data) => {
     setSpeedOmeterVisible(data);
@@ -21,7 +21,7 @@ export const MainRoutes = () => {
   useNuiEvent("speedometer", (data) => {
     setMph(data.speed);
     setQuilometragem(data.quilometragem);
-    setRPM(data.rpm);
+    setGear(data.gear);
   });
 
   return (
@@ -32,10 +32,10 @@ export const MainRoutes = () => {
             <Hud />
             <RoutesPublic />
 
-            <div className="absolute font-bold text-3xl text-white  bottom-6 left-[330px] ">
+            <div className="absolute bottom-6 right-[40px] ">
               {isSpeedOmeterVisible && (
                 <Speedometer
-                  rpm={rpm}
+                  gear={gear}
                   mph={mph}
                   quilometragem={quilometragem}
                 />
